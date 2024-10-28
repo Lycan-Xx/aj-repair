@@ -8,6 +8,19 @@ body {
 
 }
 
+
+/* my custum version of the css to fix some things */
+
+.header-heading {
+	font-size: 3rem;
+}
+
+.header-heading h2 {
+	color: #f70000;
+
+}
+
+/* it was a good run */
 * {
 	box-sizing: border-box;
 
@@ -269,19 +282,21 @@ nav .menu-btn,
 
 }
 
+
 .a-b-text p {
+
+	/* deleted some lines form this tag  */
+
 	margin: 0px;
 	color: #ffffffa6;
 	font-size: 1.1rem;
 	font-family: monospace;
-	display: block;
 	display: -webkit-box;
 	max-width: 80%;
 	margin-top: 5px;
 	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
-	text-overflow: ellipsis;
 	margin-bottom: 10px;
 
 }
