@@ -13,12 +13,25 @@ body {
 
 .header-heading {
 	font-size: 3rem;
+	text-align: center;
+	margin: 100px;
+	padding-top: 100px;
+	color: #ffffff;
+	justify-content: center;
+	align-items: center;
+
 }
 
-.header-heading h2 {
+.header-heading span {
 	color: #f70000;
 
 }
+
+.details {
+	font-size: 1.9rem;
+}
+
+
 
 /* it was a good run */
 * {
