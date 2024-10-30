@@ -19,17 +19,19 @@ function Navbar() {
 
 
     return (
-        <nav className={nav ? "nav active" : "nav"} >
+        <nav className={'flex justify-between items-center fixed top-0 left-0 w-full z-10 transition-all duration-300 ${nav ? "shadow-lg bg-black" : "bg-transparent "}'} >
             <Link to='#' className='logo'>
-                <img src={logo} alt="Logo" />
+                <img src={logo} alt="Logo" className='w-24' />
             </Link>
 
-            <input className='menu-btn' type="checkbox" id='menu-btn' />
-            <label className='menu-icon' htmlFor="menu-btn">
-                <span className='nav-icon'></span>
+            <input className='hidden' type="checkbox" id='menu-btn' />
+            <label className='menu-icon block cursor-pointer'>
+                <span className='nav-icon bg-white block h-1 w-6 mb-1'></span>
+                <span className='nav-icon bg-white block h-1 w-6'></span>
             </label>
 
-            <ul className='menu'>
+            <ul className='hidden md:flex space-x-4'>
+
                 <li><Link to='#'> Header </Link></li>
                 <li><Link to='#'> Header </Link></li>
                 <li><Link to='#'> Header </Link></li>
