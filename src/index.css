@@ -1,3 +1,26 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+@layer base {
+    body {
+        @apply text-gray-900 antialiased;
+    }
+}
+
+@layer components {
+    .section-padding {
+        @apply py-20 px-4 sm:px-6 lg:px-8;
+    }
+}
+
+@layer utilities {
+    .gradient-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600to-indigo-600;
+    }
+}
