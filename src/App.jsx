@@ -5,11 +5,12 @@ import Navbar from './components/Navbar';
 import Features from './components/Features';
 import Offer from './components/Offer';
 import About from './components/About';
-import Contact from './components/Contact';
+import Contact from './components/BookingForm';
 import Services from './components/Services';
 import Process from './components/Process';
 import Team from './components/Team';
 import Testimonials from './components/Testimonials';
+import Footer from './components/Footer';
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,7 @@ function App() {
 				<Team />
 				<Testimonials />
 				<Contact />
+				<Footer />
 
 			</main>
 		</div>
