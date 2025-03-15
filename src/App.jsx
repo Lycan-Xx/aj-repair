@@ -6,6 +6,8 @@ import Features from './components/Features';
 import Offer from './components/Offer';
 import About from './components/About';
 import Contact from './components/Contact';
+import Services from './components/Services';
+import Process from './components/Process';
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +31,8 @@ function App() {
 			<main className="w-full">
 				<Header />
 				<Features />
+				<Services />
+				<Process />
 				<Offer />
 				<About />
 				<Contact />
