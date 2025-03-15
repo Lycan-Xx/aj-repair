@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Remove the triangle clip paths and use a smooth rounded design for cards */
+@media (min-width: 1024px) {
+	/* Optional: if you want to add further large-screen styles, add them here */
+}
+
+@media (max-width: 1023px) {
+	/* Adjustments for medium screens can be placed here */
+}
