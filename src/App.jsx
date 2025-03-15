@@ -8,6 +8,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Services from './components/Services';
 import Process from './components/Process';
+import Team from './components/Team';
+import Testimonials from './components/Testimonials';
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +37,8 @@ function App() {
 				<Process />
 				<Offer />
 				<About />
+				<Team />
+				<Testimonials />
 				<Contact />
 
 			</main>

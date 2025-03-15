@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Clock, MapPin } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, ShoppingBag } from 'lucide-react';
 
 const Navbar = ({ isOpen, toggleMenu, navItems }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [activeSection, setActiveSection] = useState('home');
+	const [dropdownOpen, setDropdownOpen] = useState(false);
 
 	// Handle scroll events
 	useEffect(() => {
 		const handleScroll = () => {
-			// Set scrolled state for navbar styling
 			setScrolled(window.scrollY > 20);
 
 			// Find which section is currently in view
@@ -39,118 +39,167 @@ const Navbar = ({ isOpen, toggleMenu, navItems }) => {
 		if (isOpen) toggleMenu();
 	};
 
-	return (
-		<>
-			{/* Top info bar */}
-			<div className="hidden md:block bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm">
-					<div className="flex items-center space-x-4">
-						<div className="flex items-center">
-							<Clock size={14} className="mr-1" />
-							<span>Mon-Fri: 8AM-6PM, Sat: 9AM-3PM</span>
-						</div>
-						<div className="flex items-center">
-							<MapPin size={14} className="mr-1" />
-							<span>123 Tech Street, Digital City</span>
-						</div>
-					</div>
-					<div className="flex items-center">
-						<Phone size={14} className="mr-1" />
-						<span>Emergency Support: (555) 123-4567</span>
-					</div>
-				</div>
-			</div>
+	const serviceDropdownItems = [
+		{ label: 'Computer Repair', id: 'computer-repair' },
+		{ label: 'Phone Repair', id: 'phone-repair' },
+		{ label: 'TV Repair', id: 'tv-repair' },
+		{ label: 'Smart Home', id: 'smart-home' }
+	];
 
-			{/* Main navigation */}
-			<nav className={`fixed top-0 md:top-9 w-full ${scrolled ? 'bg-white/95' : 'bg-white/80'} backdrop-blur-sm shadow-sm z-50 transition-all duration-300`}>
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex items-center justify-between h-16">
-						<div className="flex-shrink-0">
-							<span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent flex items-center">
-								<svg className="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="url(#paint0_linear)" stroke="url(#paint1_linear)" strokeWidth="2" />
-									<defs>
-										<linearGradient id="paint0_linear" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-											<stop stopColor="#3B82F6" />
-											<stop offset="1" stopColor="#4F46E5" />
-										</linearGradient>
-										<linearGradient id="paint1_linear" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-											<stop stopColor="#3B82F6" />
-											<stop offset="1" stopColor="#4F46E5" />
-										</linearGradient>
-									</defs>
-								</svg>
+	return (
+		<nav
+			className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
+					? 'bg-white shadow-md py-2'
+					: 'bg-transparent py-6'
+				}`}
+		>
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="flex items-center justify-between">
+					{/* Logo */}
+					<div className="flex items-center">
+						<a href="#home" className="flex items-center">
+							<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="url(#paint0_linear)" stroke="url(#paint1_linear)" strokeWidth="2" />
+								<defs>
+									<linearGradient id="paint0_linear" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
+										<stop stopColor="#3B82F6" />
+										<stop offset="1" stopColor="#4F46E5" />
+									</linearGradient>
+									<linearGradient id="paint1_linear" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
+										<stop stopColor="#3B82F6" />
+										<stop offset="1" stopColor="#4F46E5" />
+									</linearGradient>
+								</defs>
+							</svg>
+							<span className={`ml-2 text-xl font-bold transition-colors ${scrolled ? 'text-gray-800' : 'text-white'}`}>
 								TechFix Pro
 							</span>
-						</div>
-
-						{/* Desktop Navigation */}
-						<div className="hidden md:block">
-							<div className="ml-10 flex items-center space-x-1">
-								{navItems.map((item) => (
-									<button
-										key={item.id}
-										onClick={() => scrollToSection(item.id)}
-										className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeSection === item.id
-												? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600'
-												: 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-											}`}
-									>
-										{item.label}
-									</button>
-								))}
-								<button className="ml-4 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-md shadow-sm hover:from-blue-700 hover:to-indigo-700 transition-all">
-									Book Service
-								</button>
-							</div>
-						</div>
-
-						{/* Mobile menu button */}
-						<div className="md:hidden flex items-center">
-							<button className="px-4 py-1 text-xs font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-md shadow-sm hover:from-blue-700 hover:to-indigo-700 transition-all mr-2">
-								Book
-							</button>
-							<button
-								onClick={toggleMenu}
-								className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 focus:outline-none"
-							>
-								{isOpen ? <X size={24} /> : <Menu size={24} />}
-							</button>
-						</div>
+						</a>
 					</div>
-				</div>
 
-				{/* Mobile Navigation */}
-				{isOpen && (
-					<div className="md:hidden">
-						<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-							{navItems.map((item) => (
+					{/* Desktop Navigation */}
+					<div className="hidden lg:flex items-center space-x-1">
+						{navItems.map((item, index) => {
+							// For services with dropdown
+							if (item.id === 'services') {
+								return (
+									<div key={item.id} className="relative" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
+										<button
+											className={`px-4 py-2 rounded-md flex items-center transition-colors ${activeSection === item.id || dropdownOpen
+													? 'text-blue-600'
+													: scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+												}`}
+										>
+											{item.label}
+											<ChevronDown size={16} className="ml-1" />
+										</button>
+
+										{/* Dropdown menu */}
+										{dropdownOpen && (
+											<div className="absolute top-full left-0 w-56 mt-1 bg-white rounded-md shadow-lg py-2 z-50">
+												{serviceDropdownItems.map((service) => (
+													<a
+														key={service.id}
+														href={`#${service.id}`}
+														className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+													>
+														{service.label}
+													</a>
+												))}
+											</div>
+										)}
+									</div>
+								);
+							}
+
+							// Regular nav items
+							return (
 								<button
 									key={item.id}
 									onClick={() => scrollToSection(item.id)}
-									className={`block px-3 py-2 text-base font-medium w-full text-left rounded-md ${activeSection === item.id
-											? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600'
-											: 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+									className={`px-4 py-2 rounded-md transition-colors ${activeSection === item.id
+											? 'text-blue-600'
+											: scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
 										}`}
 								>
 									{item.label}
 								</button>
-							))}
-							<div className="mt-4 pt-4 border-t border-gray-200">
-								<div className="flex items-center px-3 py-2 text-sm text-gray-600">
-									<Clock size={16} className="mr-2" />
-									<span>Mon-Fri: 8AM-6PM, Sat: 9AM-3PM</span>
-								</div>
-								<div className="flex items-center px-3 py-2 text-sm text-gray-600">
-									<Phone size={16} className="mr-2" />
-									<span>(555) 123-4567</span>
-								</div>
-							</div>
+							);
+						})}
+					</div>
+
+					{/* Call to action buttons */}
+					<div className="hidden lg:flex items-center space-x-4">
+						<a href="tel:+15551234567" className="flex items-center text-sm font-medium">
+							<Phone size={18} className={`mr-2 ${scrolled ? 'text-blue-600' : 'text-blue-400'}`} />
+							<span className={scrolled ? 'text-gray-700' : 'text-white'}>
+								(555) 123-4567
+							</span>
+						</a>
+						<button
+							className="px-5 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full shadow-sm hover:shadow-md transition-all"
+						>
+							Book Service
+						</button>
+					</div>
+
+					{/* Mobile menu button */}
+					<div className="lg:hidden flex items-center">
+						<button
+							className={`px-3 py-1 mr-2 text-xs font-medium text-white rounded-full ${scrolled ? 'bg-blue-600' : 'bg-blue-500/80'}`}
+						>
+							Book Now
+						</button>
+						<button
+							onClick={toggleMenu}
+							className={`p-2 rounded-md ${scrolled
+									? 'text-gray-600 hover:text-blue-600'
+									: 'text-white hover:text-blue-200'
+								}`}
+						>
+							{isOpen ? <X size={24} /> : <Menu size={24} />}
+						</button>
+					</div>
+				</div>
+			</div>
+
+			{/* Mobile menu */}
+			{isOpen && (
+				<div className="lg:hidden bg-white shadow-lg border-t">
+					<div className="px-4 pt-2 pb-4 space-y-1">
+						{navItems.map((item) => (
+							<button
+								key={item.id}
+								onClick={() => scrollToSection(item.id)}
+								className={`block px-3 py-2 text-base font-medium w-full text-left rounded-md ${activeSection === item.id
+										? 'text-blue-600 bg-blue-50'
+										: 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+									}`}
+							>
+								{item.label}
+							</button>
+						))}
+						<div className="mt-4 pt-4 border-t border-gray-200">
+							<a href="tel:+15551234567" className="flex items-center px-3 py-2 text-base font-medium text-gray-600">
+								<Phone size={20} className="mr-3 text-blue-600" />
+								(555) 123-4567
+							</a>
+							<button className="mt-3 w-full px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-md">
+								Book Service
+							</button>
 						</div>
 					</div>
-				)}
-			</nav>
-		</>
+				</div>
+			)}
+
+			{/* Background overlay for transparent navigation */}
+			{!scrolled && (
+				<div
+					className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent -z-10"
+					style={{ height: '100px' }}
+				></div>
+			)}
+		</nav>
 	);
 };
 
