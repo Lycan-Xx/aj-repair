@@ -115,7 +115,7 @@ const Hero = () => {
 											</linearGradient>
 										</defs>
 									</svg>
-									<span className="text-2xl font-bold text-white">TechFix Pro</span>
+									<span className="text-2xl font-bold text-white">A.J TechFix Pro</span>
 								</div>
 
 								<div className="space-y-4">

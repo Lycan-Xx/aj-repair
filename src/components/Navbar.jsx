@@ -72,7 +72,7 @@ const Navbar = ({ isOpen, toggleMenu, navItems }) => {
 								</defs>
 							</svg>
 							<span className={`ml-2 text-xl font-bold transition-colors ${scrolled ? 'text-gray-800' : 'text-white'}`}>
-								TechFix Pro
+								AJ TechFix Pro
 							</span>
 						</a>
 					</div>
